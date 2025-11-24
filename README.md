@@ -53,92 +53,151 @@ spring-mvc-demo/
 │   └── main/
 │       ├── java/
 │       │   └── com.example.mvc/
-│       │       ├── MvcApplication.java
-│       │       └── HomeController.java
+│       │       ├── Exp2Application.java
+│       │       └── IndexController.java
 │       └── resources/
 │           ├── templates/
-│           │   └── index.html
+│           │   └── Index.html
 │           └── application.properties
 ├── pom.xml
 
 ### pom.xml :
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.0.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com</groupId>
+	<artifactId>Exp2</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Exp2</name>
+	<description>Java Spring Boot Experiment 2</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>25</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
-    <groupId>com.example</groupId>
-    <artifactId>spring-mvc-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Spring MVC Demo</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.2</version>
-    </parent>
-
-    <dependencies>
-        <!-- Spring Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Thymeleaf for View Rendering -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-    </dependencies>
 </project>
+```
 
 ### MvcApplication.java (Main Class):
-
-package com.example.mvc;
+```
+package com.Exp2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MvcApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MvcApplication.class, args);
-    }
+public class Exp2Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Exp2Application.class, args);
+	}
+
 }
+```
 
-### HomeController.java (Controller):
-
-package com.example.mvc;
+### IndexController.java (Controller):
+```
+package com.Exp2.Controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
+public class IndexController {
 
     @GetMapping("/")
-    public String homePage(Model model) {
-        model.addAttribute("message", "Welcome to Spring Boot MVC!");
-        return "index";  // refers to index.html in templates folder
+    public String Index() {
+        return "Index";
     }
 }
-### index.html (View – inside src/main/resources/templates/):
+```
 
+### index.html (View – inside src/main/resources/templates/):
+```
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Spring MVC</title>
+  <meta charset="UTF-8">
+  <title>Index</title>
 </head>
 <body>
-    <h1 th:text="${message}">Default Message</h1>
+<p>ADVANCED JAVA WEB APPLICATIONS - 19AI553
+</p>
 </body>
+<style>
+  body {
+  background-color: Lightblue;
+  }
+  p {
+  font-family: verdana;
+  font-size: 50px;
+  text-color: white;
+  text-align: center;
+  }
+</style>
 </html>
-
+```
 ### application.properties:
- server.port=8081
+```
+# Server port
+server.port=8080
+
+# Thymeleaf configuration
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.mode=HTML
+spring.thymeleaf.encoding=UTF-8
+spring.thymeleaf.servlet.content-type=text/html
+```
 
 
