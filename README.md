@@ -199,5 +199,8 @@ spring.thymeleaf.mode=HTML
 spring.thymeleaf.encoding=UTF-8
 spring.thymeleaf.servlet.content-type=text/html
 ```
+### Output:
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8a07ed1d-3ecf-40eb-8f89-868f13904438" />
+
 
 
